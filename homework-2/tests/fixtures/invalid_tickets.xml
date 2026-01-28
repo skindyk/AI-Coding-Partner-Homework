@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_id>invalid_001</customer_id>
+    <customer_email>bad-email-format</customer_email>
+    <customer_name>Invalid User</customer_name>
+    <subject>Invalid Email Test</subject>
+    <description>This ticket has invalid email format without @</description>
+  </ticket>
+  <ticket>
+    <customer_id>invalid_002</customer_id>
+    <customer_email>test@example.com</customer_email>
+    <customer_name>Test</customer_name>
+    <subject>s</subject>
+    <description>x</description>
+  </ticket>
+  <ticket>
+    <customer_id>invalid_003</customer_id>
+    <customer_email>missing-required</customer_email>
+    <subject>Missing Customer Name</subject>
+    <description>This ticket is missing the customer_name field which is required</description>
+  </ticket>
+</tickets>

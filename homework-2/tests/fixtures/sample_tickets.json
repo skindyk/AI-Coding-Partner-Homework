@@ -1,0 +1,302 @@
+[
+  {
+    "customer_id": "json_001",
+    "customer_email": "alice.martinez@company.com",
+    "customer_name": "Alice Martinez",
+    "subject": "Critical: Production database down",
+    "description": "The production database is down and all services are unavailable. This is a critical issue affecting all users.",
+    "category": "technical_issue",
+    "priority": "urgent",
+    "tags": ["critical", "database", "production"],
+    "metadata": {
+      "source": "phone",
+      "browser": "N/A",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_002",
+    "customer_email": "bob.jenkins@company.com",
+    "customer_name": "Bob Jenkins",
+    "subject": "Cannot complete payment",
+    "description": "I have tried multiple times to complete my payment but the system keeps rejecting it. I need help resolving this billing issue.",
+    "category": "billing_question",
+    "priority": "high",
+    "tags": ["payment", "error", "billing"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_003",
+    "customer_email": "charlie.brown@company.com",
+    "customer_name": "Charlie Brown",
+    "subject": "Account locked after failed login attempts",
+    "description": "My account has been locked after multiple failed login attempts. I cannot access my account anymore and need to be unlocked.",
+    "category": "account_access",
+    "priority": "high",
+    "tags": ["locked", "security", "urgent"],
+    "metadata": {
+      "source": "email",
+      "browser": "Firefox",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_004",
+    "customer_email": "diana.king@company.com",
+    "customer_name": "Diana King",
+    "subject": "Suggestion for mobile-friendly dashboard",
+    "description": "The dashboard is not very mobile-friendly. Would it be possible to create a responsive mobile version of the dashboard?",
+    "category": "feature_request",
+    "priority": "medium",
+    "tags": ["mobile", "ui", "responsive"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Safari",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "json_005",
+    "customer_email": "evan.smith@company.com",
+    "customer_name": "Evan Smith",
+    "subject": "Export function not working",
+    "description": "When I try to export data to Excel, the system throws an error. Steps to reproduce: Click export > Select Excel format > Error occurs.",
+    "category": "bug_report",
+    "priority": "high",
+    "tags": ["export", "excel", "error"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_006",
+    "customer_email": "fiona.davis@company.com",
+    "customer_name": "Fiona Davis",
+    "subject": "Refund still pending after 30 days",
+    "description": "I submitted a refund request 30 days ago and have not received the funds yet. Can you check the status of my refund?",
+    "category": "billing_question",
+    "priority": "high",
+    "tags": ["refund", "pending", "payment"],
+    "metadata": {
+      "source": "phone",
+      "browser": "N/A",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "json_007",
+    "customer_email": "george.wilson@company.com",
+    "customer_name": "George Wilson",
+    "subject": "Typo in error message",
+    "description": "Found a typo in the error message that says 'occured' instead of 'occurred'. It's a minor issue but should be fixed.",
+    "category": "bug_report",
+    "priority": "low",
+    "tags": ["typo", "ui", "minor"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Firefox",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_008",
+    "customer_email": "hannah.lee@company.com",
+    "customer_name": "Hannah Lee",
+    "subject": "Need access recovery",
+    "description": "I cannot access my account and the security questions seem to have been changed without my knowledge. I need help recovering my account.",
+    "category": "account_access",
+    "priority": "urgent",
+    "tags": ["security", "recovery", "account"],
+    "metadata": {
+      "source": "email",
+      "browser": "Safari",
+      "device_type": "tablet"
+    }
+  },
+  {
+    "customer_id": "json_009",
+    "customer_email": "isaac.taylor@company.com",
+    "customer_name": "Isaac Taylor",
+    "subject": "API rate limiting too aggressive",
+    "description": "The API rate limiting is preventing legitimate requests from going through. We need higher rate limits or a way to request increased limits.",
+    "category": "technical_issue",
+    "priority": "high",
+    "tags": ["api", "rate_limit", "performance"],
+    "metadata": {
+      "source": "email",
+      "browser": "N/A",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_010",
+    "customer_email": "julia.anderson@company.com",
+    "customer_name": "Julia Anderson",
+    "subject": "Request for advanced reporting",
+    "description": "Could you add more advanced reporting features? We need the ability to create custom reports and export them in various formats.",
+    "category": "feature_request",
+    "priority": "medium",
+    "tags": ["reporting", "custom", "export"],
+    "metadata": {
+      "source": "email",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_011",
+    "customer_email": "kevin.thomas@company.com",
+    "customer_name": "Kevin Thomas",
+    "subject": "Session timeout too short",
+    "description": "The session timeout is too short. I get logged out frequently even when actively using the application.",
+    "category": "technical_issue",
+    "priority": "medium",
+    "tags": ["session", "timeout", "ux"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Firefox",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_012",
+    "customer_email": "lisa.williams@company.com",
+    "customer_name": "Lisa Williams",
+    "subject": "Security vulnerability in login form",
+    "description": "Found a potential security vulnerability in the login form. The password is visible in the HTML source code.",
+    "category": "technical_issue",
+    "priority": "urgent",
+    "tags": ["security", "vulnerability", "critical"],
+    "metadata": {
+      "source": "email",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_013",
+    "customer_email": "mark.johnson@company.com",
+    "customer_name": "Mark Johnson",
+    "subject": "Multiple charges on my account",
+    "description": "I see multiple identical charges on my account for the same transaction. This appears to be a duplicate billing error.",
+    "category": "billing_question",
+    "priority": "urgent",
+    "tags": ["billing", "duplicate", "charge"],
+    "metadata": {
+      "source": "phone",
+      "browser": "N/A",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_014",
+    "customer_email": "nancy.garcia@company.com",
+    "customer_name": "Nancy Garcia",
+    "subject": "UI button alignment issue",
+    "description": "The submit button on the form page appears to be misaligned and overlaps with other elements. It's just a cosmetic issue but should be fixed.",
+    "category": "bug_report",
+    "priority": "low",
+    "tags": ["ui", "alignment", "cosmetic"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Safari",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "json_015",
+    "customer_email": "oscar.martinez@company.com",
+    "customer_name": "Oscar Martinez",
+    "subject": "Two-factor authentication not sending codes",
+    "description": "I enabled two-factor authentication but I am not receiving the SMS codes. Cannot complete the login process.",
+    "category": "account_access",
+    "priority": "urgent",
+    "tags": ["2fa", "sms", "security"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome",
+      "device_type": "mobile"
+    }
+  },
+  {
+    "customer_id": "json_016",
+    "customer_email": "patricia.brown@company.com",
+    "customer_name": "Patricia Brown",
+    "subject": "Request for dark mode",
+    "description": "Many users have requested a dark mode theme for the application. Would be nice to have this feature for eye comfort.",
+    "category": "feature_request",
+    "priority": "low",
+    "tags": ["ui", "theme", "dark_mode"],
+    "metadata": {
+      "source": "email",
+      "browser": "Firefox",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_017",
+    "customer_email": "quinn.wilson@company.com",
+    "customer_name": "Quinn Wilson",
+    "subject": "Import data function crashing",
+    "description": "When I try to import more than 1000 records, the import process crashes and loses all the data.",
+    "category": "bug_report",
+    "priority": "high",
+    "tags": ["import", "crash", "data_loss"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_018",
+    "customer_email": "rachel.taylor@company.com",
+    "customer_name": "Rachel Taylor",
+    "subject": "Invoice email format issue",
+    "description": "The invoice emails are not displaying correctly in Outlook. The formatting is broken.",
+    "category": "technical_issue",
+    "priority": "medium",
+    "tags": ["email", "formatting", "invoice"],
+    "metadata": {
+      "source": "email",
+      "browser": "N/A",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_019",
+    "customer_email": "sam.anderson@company.com",
+    "customer_name": "Sam Anderson",
+    "subject": "Cannot change email address",
+    "description": "I want to change the email associated with my account but the system is not allowing me to update it.",
+    "category": "account_access",
+    "priority": "high",
+    "tags": ["account", "email", "profile"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Firefox",
+      "device_type": "desktop"
+    }
+  },
+  {
+    "customer_id": "json_020",
+    "customer_email": "tanya.white@company.com",
+    "customer_name": "Tanya White",
+    "subject": "Performance optimization needed",
+    "description": "The dashboard takes several seconds to load even with a fast internet connection. Performance optimization is needed.",
+    "category": "technical_issue",
+    "priority": "medium",
+    "tags": ["performance", "optimization", "slow"],
+    "metadata": {
+      "source": "email",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  }
+]
