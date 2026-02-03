@@ -1,0 +1,195 @@
+### Customer Support Ticket System - API Testing
+### Use with REST Client extension in VS Code or any HTTP client
+
+@baseUrl = http://localhost:3000/api
+@contentType = application/json
+
+### ======================================
+### Health Check
+### ======================================
+
+### Check server health
+GET http://localhost:3000/health
+
+### ======================================
+### Create Tickets
+### ======================================
+
+### Create a simple ticket
+POST {{baseUrl}}/tickets
+Content-Type: {{contentType}}
+
+{
+  "customer_id": "cust_demo_001",
+  "customer_email": "demo@example.com",
+  "customer_name": "Demo User",
+  "subject": "Cannot access my account",
+  "description": "I've been trying to login for the past hour but keep getting an error message saying my password is incorrect. I've tried resetting it but the email never arrives.",
+  "category": "account_access",
+  "priority": "high"
+}
+
+### Create ticket with auto-classification
+POST {{baseUrl}}/tickets?auto_classify=true
+Content-Type: {{contentType}}
+
+{
+  "customer_id": "cust_demo_002",
+  "customer_email": "billing@example.com",
+  "customer_name": "Jane Smith",
+  "subject": "Charged twice this month",
+  "description": "I noticed I was charged twice for my subscription this month. I need a refund for the duplicate charge. This is urgent as it has caused an overdraft in my account.",
+  "category": "other",
+  "priority": "medium"
+}
+
+### Create urgent ticket
+POST {{baseUrl}}/tickets
+Content-Type: {{contentType}}
+
+{
+  "customer_id": "cust_demo_003",
+  "customer_email": "urgent@example.com",
+  "customer_name": "John Doe",
+  "subject": "Production system is down!",
+  "description": "Our production database is completely down and all services are unavailable. This is a critical security issue affecting all users. We need immediate assistance!",
+  "category": "technical_issue",
+  "priority": "urgent",
+  "metadata": {
+    "source": "phone",
+    "device_type": "desktop"
+  }
+}
+
+### ======================================
+### List and Filter Tickets
+### ======================================
+
+### Get all tickets
+GET {{baseUrl}}/tickets
+
+### Filter by category
+GET {{baseUrl}}/tickets?category=technical_issue
+
+### Filter by priority
+GET {{baseUrl}}/tickets?priority=urgent
+
+### Filter by status
+GET {{baseUrl}}/tickets?status=new
+
+### Combined filters (category + priority)
+GET {{baseUrl}}/tickets?category=billing_question&priority=high
+
+### Filter by customer
+GET {{baseUrl}}/tickets?customer_id=cust_demo_001
+
+### ======================================
+### Get, Update, Delete Specific Ticket
+### ======================================
+
+### Get ticket by ID (replace with actual ticket ID)
+@ticketId = YOUR_TICKET_ID_HERE
+GET {{baseUrl}}/tickets/{{ticketId}}
+
+### Update ticket status
+PUT {{baseUrl}}/tickets/{{ticketId}}
+Content-Type: {{contentType}}
+
+{
+  "status": "in_progress",
+  "assigned_to": "support_agent_1"
+}
+
+### Update ticket to resolved
+PUT {{baseUrl}}/tickets/{{ticketId}}
+Content-Type: {{contentType}}
+
+{
+  "status": "resolved"
+}
+
+### Delete ticket
+DELETE {{baseUrl}}/tickets/{{ticketId}}
+
+### ======================================
+### Auto-Classification
+### ======================================
+
+### Manually classify a ticket (replace with actual ticket ID)
+POST {{baseUrl}}/tickets/{{ticketId}}/auto-classify
+
+### ======================================
+### Bulk Import
+### ======================================
+
+### Import tickets from JSON
+POST {{baseUrl}}/tickets/import
+Content-Type: {{contentType}}
+
+{
+  "file_type": "json",
+  "file_content": "[{\"customer_id\":\"import_001\",\"customer_email\":\"import1@test.com\",\"customer_name\":\"Import Test 1\",\"subject\":\"Test import ticket 1\",\"description\":\"This is a test ticket imported via API using JSON format\"},{\"customer_id\":\"import_002\",\"customer_email\":\"import2@test.com\",\"customer_name\":\"Import Test 2\",\"subject\":\"Test import ticket 2\",\"description\":\"This is another test ticket imported via API using JSON format\"}]"
+}
+
+### Import tickets from CSV
+POST {{baseUrl}}/tickets/import
+Content-Type: {{contentType}}
+
+{
+  "file_type": "csv",
+  "file_content": "customer_id,customer_email,customer_name,subject,description\ncsv_001,csv1@test.com,CSV User 1,CSV Import Test,This is a test ticket imported from CSV format\ncsv_002,csv2@test.com,CSV User 2,Another CSV Test,This is another ticket from CSV"
+}
+
+### Import tickets from XML
+POST {{baseUrl}}/tickets/import
+Content-Type: {{contentType}}
+
+{
+  "file_type": "xml",
+  "file_content": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><tickets><ticket><customer_id>xml_001</customer_id><customer_email>xml1@test.com</customer_email><customer_name>XML User</customer_name><subject>XML Import Test</subject><description>This is a test ticket imported from XML format</description></ticket></tickets>"
+}
+
+### ======================================
+### Audit Logs
+### ======================================
+
+### Get all audit logs
+GET {{baseUrl}}/audit-logs
+
+### Get logs for specific ticket
+GET {{baseUrl}}/audit-logs?ticket_id={{ticketId}}
+
+### Get logs by action type
+GET {{baseUrl}}/audit-logs?action=auto_classify_on_create
+
+### Get manual classification logs
+GET {{baseUrl}}/audit-logs?action=manual_classify
+
+### ======================================
+### Analytics & Statistics
+### ======================================
+
+### Get classification statistics
+GET {{baseUrl}}/audit-stats
+
+### ======================================
+### Example Workflow: Complete Ticket Lifecycle
+### ======================================
+
+### 1. Create a new ticket with auto-classify
+# POST {{baseUrl}}/tickets?auto_classify=true
+# (Copy the ticket ID from response)
+
+### 2. Get the ticket details
+# GET {{baseUrl}}/tickets/{{ticketId}}
+
+### 3. Update ticket to in-progress
+# PUT {{baseUrl}}/tickets/{{ticketId}}
+# Body: {"status": "in_progress", "assigned_to": "support_agent"}
+
+### 4. Resolve the ticket
+# PUT {{baseUrl}}/tickets/{{ticketId}}
+# Body: {"status": "resolved"}
+
+### 5. View audit trail
+# GET {{baseUrl}}/audit-logs?ticket_id={{ticketId}}

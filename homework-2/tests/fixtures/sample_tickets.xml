@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tickets>
+  <ticket>
+    <customer_id>xml_001</customer_id>
+    <customer_email>alice.johnson@example.com</customer_email>
+    <customer_name>Alice Johnson</customer_name>
+    <subject>Critical: Security breach detected</subject>
+    <description>We have detected a security breach in our system. All users' data may be at risk. This needs immediate attention and investigation.</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <tags><tag>security</tag><tag>breach</tag><tag>critical</tag></tags>
+    <metadata><source>phone</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_002</customer_id>
+    <customer_email>bob.williams@example.com</customer_email>
+    <customer_name>Bob Williams</customer_name>
+    <subject>Cannot access account after password change</subject>
+    <description>After changing my password, I cannot login to my account. The new password doesn't work even though I confirmed it during the change process.</description>
+    <category>account_access</category>
+    <priority>high</priority>
+    <tags><tag>password</tag><tag>login</tag><tag>urgent</tag></tags>
+    <metadata><source>web_form</source><browser>Firefox</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_003</customer_id>
+    <customer_email>charlie.davis@example.com</customer_email>
+    <customer_name>Charlie Davis</customer_name>
+    <subject>Billing page not loading</subject>
+    <description>The billing page is not loading and shows a 404 error. I cannot see my invoices or manage my subscription.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <tags><tag>404</tag><tag>billing</tag><tag>page</tag></tags>
+    <metadata><source>web_form</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_004</customer_id>
+    <customer_email>diana.miller@example.com</customer_email>
+    <customer_name>Diana Miller</customer_name>
+    <subject>Suggestion: Add calendar integration</subject>
+    <description>It would be very helpful to integrate a calendar feature into the application for scheduling and reminders.</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <tags><tag>calendar</tag><tag>integration</tag><tag>feature</tag></tags>
+    <metadata><source>email</source><browser>Safari</browser><device_type>tablet</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_005</customer_id>
+    <customer_email>evan.wilson@example.com</customer_email>
+    <customer_name>Evan Wilson</customer_name>
+    <subject>Bug: Date calculation incorrect</subject>
+    <description>The date calculation in reports is showing incorrect values. Steps: Create report > Select date range > Results show wrong dates.</description>
+    <category>bug_report</category>
+    <priority>high</priority>
+    <tags><tag>date</tag><tag>calculation</tag><tag>bug</tag></tags>
+    <metadata><source>web_form</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_006</customer_id>
+    <customer_email>fiona.taylor@example.com</customer_email>
+    <customer_name>Fiona Taylor</customer_name>
+    <subject>Charged incorrect amount</subject>
+    <description>I was charged $150 instead of the $99 plan I selected. Please correct this billing error immediately.</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <tags><tag>billing</tag><tag>charge</tag><tag>error</tag></tags>
+    <metadata><source>phone</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_007</customer_id>
+    <customer_email>george.anderson@example.com</customer_email>
+    <customer_name>George Anderson</customer_name>
+    <subject>Typo in welcome email</subject>
+    <description>The welcome email contains a typo in the company name. It says 'Acme Coporation' instead of 'Acme Corporation'.</description>
+    <category>bug_report</category>
+    <priority>low</priority>
+    <tags><tag>typo</tag><tag>email</tag><tag>minor</tag></tags>
+    <metadata><source>email</source><browser>Firefox</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_008</customer_id>
+    <customer_email>hannah.jackson@example.com</customer_email>
+    <customer_name>Hannah Jackson</customer_name>
+    <subject>Account recovery needed</subject>
+    <description>I cannot access my account. Both the password and security question recovery options are not working. I need emergency access recovery.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <tags><tag>recovery</tag><tag>security</tag><tag>urgent</tag></tags>
+    <metadata><source>phone</source><device_type>mobile</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_009</customer_id>
+    <customer_email>isaac.lee@example.com</customer_email>
+    <customer_name>Isaac Lee</customer_name>
+    <subject>API documentation outdated</subject>
+    <description>The API documentation references endpoints that no longer exist. The documentation needs to be updated urgently.</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <tags><tag>api</tag><tag>documentation</tag><tag>outdated</tag></tags>
+    <metadata><source>email</source><browser>N/A</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_010</customer_id>
+    <customer_email>julia.martin@example.com</customer_email>
+    <customer_name>Julia Martin</customer_name>
+    <subject>Request SSO integration</subject>
+    <description>We would like to have Single Sign-On (SSO) integration using our corporate directory for easier access.</description>
+    <category>feature_request</category>
+    <priority>medium</priority>
+    <tags><tag>sso</tag><tag>authentication</tag><tag>enterprise</tag></tags>
+    <metadata><source>email</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_011</customer_id>
+    <customer_email>kevin.white@example.com</customer_email>
+    <customer_name>Kevin White</customer_name>
+    <subject>Too many failed login attempts</subject>
+    <description>My account has been locked due to failed login attempts. I forgot my password but cannot reset it.</description>
+    <category>account_access</category>
+    <priority>high</priority>
+    <tags><tag>locked</tag><tag>login</tag><tag>password</tag></tags>
+    <metadata><source>web_form</source><browser>Safari</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_012</customer_id>
+    <customer_email>lisa.harris@example.com</customer_email>
+    <customer_name>Lisa Harris</customer_name>
+    <subject>Data export function broken</subject>
+    <description>The data export to CSV is producing corrupted files. The exported data is incomplete and has formatting issues.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <tags><tag>export</tag><tag>csv</tag><tag>data</tag></tags>
+    <metadata><source>web_form</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_013</customer_id>
+    <customer_email>mark.clark@example.com</customer_email>
+    <customer_name>Mark Clark</customer_name>
+    <subject>Refund request stuck</subject>
+    <description>I requested a refund 45 days ago and it has not been processed yet. Can you check the status of my refund?</description>
+    <category>billing_question</category>
+    <priority>high</priority>
+    <tags><tag>refund</tag><tag>payment</tag><tag>stuck</tag></tags>
+    <metadata><source>phone</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_014</customer_id>
+    <customer_email>nancy.lewis@example.com</customer_email>
+    <customer_name>Nancy Lewis</customer_name>
+    <subject>Button spacing issue on mobile</subject>
+    <description>The buttons on the mobile interface are too close together. It's difficult to tap the correct button.</description>
+    <category>bug_report</category>
+    <priority>medium</priority>
+    <tags><tag>mobile</tag><tag>ui</tag><tag>spacing</tag></tags>
+    <metadata><source>web_form</source><browser>Safari</browser><device_type>mobile</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_015</customer_id>
+    <customer_email>oscar.walker@example.com</customer_email>
+    <customer_name>Oscar Walker</customer_name>
+    <subject>Cannot receive SMS codes</subject>
+    <description>Two-factor authentication is enabled but I am not receiving SMS codes. Without the codes I cannot access my account.</description>
+    <category>account_access</category>
+    <priority>urgent</priority>
+    <tags><tag>2fa</tag><tag>sms</tag><tag>access</tag></tags>
+    <metadata><source>web_form</source><browser>Chrome</browser><device_type>mobile</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_016</customer_id>
+    <customer_email>patricia.hall@example.com</customer_email>
+    <customer_name>Patricia Hall</customer_name>
+    <subject>Request batch operations</subject>
+    <description>We need the ability to perform batch operations on multiple records at once for better efficiency.</description>
+    <category>feature_request</category>
+    <priority>medium</priority>
+    <tags><tag>batch</tag><tag>operations</tag><tag>efficiency</tag></tags>
+    <metadata><source>email</source><browser>Firefox</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_017</customer_id>
+    <customer_email>quinn.allen@example.com</customer_email>
+    <customer_name>Quinn Allen</customer_name>
+    <subject>Production down - Database error</subject>
+    <description>Critical production database error. The system is completely down. All services are unavailable. This is an emergency.</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <tags><tag>production</tag><tag>database</tag><tag>critical</tag></tags>
+    <metadata><source>phone</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_018</customer_id>
+    <customer_email>rachel.king@example.com</customer_email>
+    <customer_name>Rachel King</customer_name>
+    <subject>Invoice not itemized</subject>
+    <description>The invoices do not show itemized details. They just show a total without breaking down what is being charged.</description>
+    <category>billing_question</category>
+    <priority>medium</priority>
+    <tags><tag>invoice</tag><tag>itemized</tag><tag>details</tag></tags>
+    <metadata><source>email</source><browser>N/A</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_019</customer_id>
+    <customer_email>sam.wright@example.com</customer_email>
+    <customer_name>Sam Wright</customer_name>
+    <subject>Cannot update email address</subject>
+    <description>I want to change my email address but the system gives an error saying the email is already in use even though it is not.</description>
+    <category>account_access</category>
+    <priority>high</priority>
+    <tags><tag>email</tag><tag>account</tag><tag>update</tag></tags>
+    <metadata><source>web_form</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_020</customer_id>
+    <customer_email>tanya.brown@example.com</customer_email>
+    <customer_name>Tanya Brown</customer_name>
+    <subject>Dashboard slow to load</subject>
+    <description>The dashboard is taking 15+ seconds to load even with a high-speed connection. Performance is very poor.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <tags><tag>performance</tag><tag>dashboard</tag><tag>slow</tag></tags>
+    <metadata><source>web_form</source><browser>Firefox</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_021</customer_id>
+    <customer_email>uriah.jones@example.com</customer_email>
+    <customer_name>Uriah Jones</customer_name>
+    <subject>Request webhook API</subject>
+    <description>We need webhook support to send real-time notifications to external systems when events occur.</description>
+    <category>feature_request</category>
+    <priority>low</priority>
+    <tags><tag>webhook</tag><tag>api</tag><tag>integration</tag></tags>
+    <metadata><source>email</source><browser>N/A</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_022</customer_id>
+    <customer_email>vanessa.garcia@example.com</customer_email>
+    <customer_name>Vanessa Garcia</customer_name>
+    <subject>Security: Password visible in HTML</subject>
+    <description>Found a critical security issue where user passwords are visible in the HTML source code of the login page.</description>
+    <category>technical_issue</category>
+    <priority>urgent</priority>
+    <tags><tag>security</tag><tag>password</tag><tag>critical</tag></tags>
+    <metadata><source>email</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_023</customer_id>
+    <customer_email>william.taylor@example.com</customer_email>
+    <customer_name>William Taylor</customer_name>
+    <subject>Duplicate billing charges</subject>
+    <description>I see multiple identical charges on my account for a single transaction. I was billed 3 times instead of once.</description>
+    <category>billing_question</category>
+    <priority>urgent</priority>
+    <tags><tag>billing</tag><tag>duplicate</tag><tag>charge</tag></tags>
+    <metadata><source>phone</source><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_024</customer_id>
+    <customer_email>xander.anderson@example.com</customer_email>
+    <customer_name>Xander Anderson</customer_name>
+    <subject>UI element misalignment</subject>
+    <description>The footer elements are misaligned on the home page. Some text overlaps with the navigation menu.</description>
+    <category>bug_report</category>
+    <priority>low</priority>
+    <tags><tag>ui</tag><tag>alignment</tag><tag>cosmetic</tag></tags>
+    <metadata><source>web_form</source><browser>Safari</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_025</customer_id>
+    <customer_email>yara.miller@example.com</customer_email>
+    <customer_name>Yara Miller</customer_name>
+    <subject>Import data failing</subject>
+    <description>When importing large CSV files with more than 500 rows, the import process times out and fails.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <tags><tag>import</tag><tag>csv</tag><tag>timeout</tag></tags>
+    <metadata><source>web_form</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_026</customer_id>
+    <customer_email>zachary.davis@example.com</customer_email>
+    <customer_name>Zachary Davis</customer_name>
+    <subject>Support multiple languages</subject>
+    <description>We need support for multiple languages including Spanish, French, and German for our international users.</description>
+    <category>feature_request</category>
+    <priority>medium</priority>
+    <tags><tag>language</tag><tag>internationalization</tag><tag>support</tag></tags>
+    <metadata><source>email</source><browser>Firefox</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_027</customer_id>
+    <customer_email>alice.robinson@example.com</customer_email>
+    <customer_name>Alice Robinson</customer_name>
+    <subject>Downgrade plan not working</subject>
+    <description>I want to downgrade my subscription to a lower tier but the downgrade option is not available in the UI.</description>
+    <category>account_access</category>
+    <priority>medium</priority>
+    <tags><tag>subscription</tag><tag>downgrade</tag><tag>plan</tag></tags>
+    <metadata><source>web_form</source><browser>Chrome</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_028</customer_id>
+    <customer_email>bob.adams@example.com</customer_email>
+    <customer_name>Bob Adams</customer_name>
+    <subject>API response times too slow</subject>
+    <description>The API is responding very slowly. Some requests are taking 5+ seconds to complete. Performance needs to be optimized.</description>
+    <category>technical_issue</category>
+    <priority>high</priority>
+    <tags><tag>api</tag><tag>performance</tag><tag>slow</tag></tags>
+    <metadata><source>email</source><browser>N/A</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_029</customer_id>
+    <customer_email>carol.thomas@example.com</customer_email>
+    <customer_name>Carol Thomas</customer_name>
+    <subject>Enable GDPR compliance features</subject>
+    <description>We need enhanced GDPR compliance features including data export and deletion capabilities for our European users.</description>
+    <category>feature_request</category>
+    <priority>high</priority>
+    <tags><tag>gdpr</tag><tag>compliance</tag><tag>privacy</tag></tags>
+    <metadata><source>email</source><browser>N/A</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+  <ticket>
+    <customer_id>xml_030</customer_id>
+    <customer_email>daniel.jackson@example.com</customer_email>
+    <customer_name>Daniel Jackson</customer_name>
+    <subject>Email notification not working</subject>
+    <description>I enabled email notifications but I am not receiving any emails even when events occur. The notification system is broken.</description>
+    <category>technical_issue</category>
+    <priority>medium</priority>
+    <tags><tag>notification</tag><tag>email</tag><tag>system</tag></tags>
+    <metadata><source>web_form</source><browser>Firefox</browser><device_type>desktop</device_type></metadata>
+  </ticket>
+</tickets>

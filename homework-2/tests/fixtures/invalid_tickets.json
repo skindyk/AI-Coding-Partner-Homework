@@ -1,0 +1,25 @@
+[
+  {
+    "customer_id": "invalid_001",
+    "customer_email": "not-an-email",
+    "customer_name": "Test User",
+    "subject": "Invalid email test",
+    "description": "This ticket has an invalid email format"
+  },
+  {
+    "customer_id": "invalid_002",
+    "customer_email": "valid@test.com",
+    "customer_name": "Test User 2",
+    "subject": "x",
+    "description": "Too short"
+  },
+  {
+    "customer_id": "invalid_003",
+    "customer_email": "test@example.com",
+    "customer_name": "Test User 3",
+    "category": "invalid_category",
+    "priority": "invalid_priority",
+    "subject": "Invalid enum test",
+    "description": "This ticket has invalid category and priority values"
+  }
+]

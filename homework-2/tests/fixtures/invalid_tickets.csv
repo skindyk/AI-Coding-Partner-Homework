@@ -1,0 +1,4 @@
+customer_id,customer_email,customer_name,subject,description
+test_001,invalid-email-format,John Doe,Test Subject,This is a test description that should fail validation
+test_002,missing@email,Jane Smith,,Missing subject field
+test_003,incomplete@test.com,Bob Jones,Subject,Short
