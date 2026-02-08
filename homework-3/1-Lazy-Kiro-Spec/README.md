@@ -14,19 +14,19 @@ This specification package defines a comprehensive virtual card management syste
 
 The specification was structured using a three-tier approach (High-Level → Mid-Level → Low-Level) to ensure clear progression from business objectives to implementable tasks:
 
-**Requirements Document (requirements.md):**
+**Requirements Document (.kiro/requirements.md):**
 - Used EARS (Easy Approach to Requirements Syntax) patterns for consistency and clarity
 - Followed INCOSE quality rules to ensure measurable, testable requirements
 - Structured as user stories with acceptance criteria to maintain user-centric focus
 - Included comprehensive glossary to eliminate ambiguity in technical terms
 
-**Design Document (design.md):**
+**Design Document (.kiro/design.md):**
 - Chose microservices architecture to enable scalability and maintainability
 - Selected modern FinTech-appropriate technology stack (Node.js, PostgreSQL, Redis)
 - Emphasized security-first design with encryption and audit capabilities
 - Included detailed component interfaces to guide implementation
 
-**Implementation Plan (tasks.md):**
+**Implementation Plan (.kiro/tasks.md):**
 - Organized tasks in 8 phases building incrementally from foundation to deployment
 - Marked testing tasks as optional to enable faster MVP development
 - Each task references specific requirements for traceability
