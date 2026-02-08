@@ -4,7 +4,7 @@
 
 > **Student Name**: [Serhii Kindyk]
 > **Date Submitted**: [02/08/2025]
-> **AI Tools Used**: [Gemini for IDEA and brief spec generation. Claude Code via VS Code IDE extention with Opus 4.6(while it's free :) for detailed spec set implementation. Claude Code CLI agent teams for implementation]
+> **AI Tools Used**: [Gemini for app idea and brief spec generation. Claude Code via VS Code IDE extention with Opus 4.6(while it's free :) for detailed spec set implementation. Claude Code CLI agent teams for implementation]
 
 **Application:** "The Financial Exorcist" — a gamified personal-finance tracker that frames spending habits as demonic possession. Users log transactions categorised as "Sins." When a transaction matches a demon's trigger rule, the UI locks into a gothic "Possessed Mode" and the user must complete a digital ritual (typing challenges, math puzzles, wait timers) to regain control. Under the horror-comedy surface, the application enforces real FinTech practices: audit logging, input sanitisation, monetary precision, GDPR-style data rights, and security headers.
 

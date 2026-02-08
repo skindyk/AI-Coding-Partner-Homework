@@ -1,7 +1,8 @@
 # Virtual Card Management System - Specification Package
 
-**Student:** [Your Name]  
-**Assignment:** Homework 3 - Specification-Driven Design
+> **Student Name**: [Serhii Kindyk]
+> **Date Submitted**: [02/06/2025]
+> **AI Tools Used**: [Amazon Kiro for quick and dirty spec preparation based only on two files input. Just wanted to try Spec mode and what we'll get in result with a limited input]
 
 ## Task Summary
 
