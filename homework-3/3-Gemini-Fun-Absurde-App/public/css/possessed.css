@@ -1,0 +1,241 @@
+/* Possessed Mode - Dramatic Red Theme */
+
+/* Possessed State Overrides */
+body.possessed {
+  background-color: #1a0000;
+  color: #ff0033;
+  font-family: 'Creepster', cursive, serif;
+}
+
+/* Eerie Red Glow Effect */
+body.possessed::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(139, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%);
+  pointer-events: none;
+  z-index: -1;
+  animation: pulse-glow 3s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Jittering Animation */
+body.possessed {
+  animation: jitter 2s infinite;
+}
+
+@keyframes jitter {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-3px, -3px); }
+  20% { transform: translate(3px, 3px); }
+  30% { transform: translate(-3px, 3px); }
+  40% { transform: translate(3px, -3px); }
+  50% { transform: translate(-2px, 2px); }
+  60% { transform: translate(2px, -2px); }
+  70% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+  90% { transform: translate(-3px, 2px); }
+}
+
+/* Possessed Header */
+body.possessed .header {
+  background-color: #3a0000;
+  color: #ff6666;
+  border: 2px solid #ff0033;
+  box-shadow: 0 0 20px rgba(255, 0, 51, 0.5);
+}
+
+body.possessed .header h1 {
+  text-shadow: 0 0 10px #ff0033, 0 0 20px #ff0033;
+  animation: flicker-text 1.5s infinite;
+}
+
+@keyframes flicker-text {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Possessed Cards */
+body.possessed .purity-card,
+body.possessed .transaction-card,
+body.possessed .modal-content {
+  background-color: #2a0000;
+  border: 2px solid #ff0033;
+  box-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
+}
+
+body.possessed .purity-card h2,
+body.possessed .modal-header h2,
+body.possessed .section-header h2 {
+  color: #ff6666;
+  text-shadow: 0 0 5px #ff0033;
+}
+
+/* Possessed Purity Circle */
+body.possessed .purity-circle {
+  background: linear-gradient(135deg, #ff0033, #8b0000);
+  box-shadow: 0 0 20px rgba(255, 0, 51, 0.6);
+  animation: pulse-circle 2s infinite;
+}
+
+@keyframes pulse-circle {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Possessed Text Colors */
+body.possessed .breakdown-item,
+body.possessed .transaction-description,
+body.possessed .dashboard-stats p,
+body.possessed .form-group label {
+  color: #ff9999;
+}
+
+body.possessed .breakdown-item .amount,
+body.possessed .transaction-amount {
+  color: #ff6666;
+  text-shadow: 0 0 3px #ff0033;
+}
+
+/* Possessed Buttons */
+body.possessed .btn-primary {
+  background-color: #8b0000;
+  color: #ff0033;
+  border: 2px solid #ff0033;
+  text-shadow: 0 0 5px #ff0033;
+  box-shadow: 0 0 10px rgba(255, 0, 51, 0.3);
+}
+
+body.possessed .btn-primary:hover {
+  background-color: #a00000;
+  box-shadow: 0 0 20px rgba(255, 0, 51, 0.6);
+}
+
+body.possessed .btn-secondary {
+  background-color: #3a0000;
+  color: #ff9999;
+  border: 1px solid #ff0033;
+}
+
+body.possessed .btn-danger {
+  background-color: #8b0000;
+  color: #ff0033;
+  border: 2px solid #ff0033;
+  box-shadow: 0 0 10px rgba(255, 0, 51, 0.4);
+}
+
+/* Possessed Form Elements */
+body.possessed .form-group input,
+body.possessed .form-group select,
+body.possessed .form-group textarea {
+  background-color: #3a0000;
+  border-color: #ff0033;
+  color: #ff9999;
+}
+
+body.possessed .form-group input:focus,
+body.possessed .form-group select:focus,
+body.possessed .form-group textarea:focus {
+  border-color: #ff0033;
+  box-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+}
+
+/* Possessed Modal */
+body.possessed .modal {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+body.possessed .modal-header,
+body.possessed .modal-footer {
+  background-color: #3a0000;
+  border-color: #ff0033;
+}
+
+/* Possessed Progress Bar */
+body.possessed .progress-bar {
+  background-color: #3a0000;
+  border: 1px solid #ff0033;
+}
+
+body.possessed .progress-fill {
+  background-color: #ff0033;
+  box-shadow: 0 0 10px #ff0033;
+}
+
+/* Possessed Footer */
+body.possessed .footer {
+  color: #ff6666;
+}
+
+body.possessed .footer-text {
+  text-shadow: 0 0 5px rgba(255, 0, 51, 0.5);
+}
+
+/* Possessed Transaction Cards */
+body.possessed .transaction-card {
+  border-left-color: #ff0033;
+  border: 1px solid #ff0033;
+  background-color: #2a0000;
+}
+
+body.possessed .transaction-card:hover {
+  box-shadow: 0 0 20px rgba(255, 0, 51, 0.4);
+  border-color: #ff6666;
+}
+
+/* Possessed Breakdown Items */
+body.possessed .breakdown-item {
+  background-color: #3a0000;
+  border-left-color: #ff0033;
+}
+
+body.possessed .breakdown-item strong {
+  color: #ff9999;
+}
+
+/* Possessed Meta Text */
+body.possessed .transaction-meta {
+  color: #ff6666;
+}
+
+/* Possessed Close Button */
+body.possessed .btn-close {
+  color: #ff9999;
+}
+
+body.possessed .btn-close:hover {
+  color: #ff0033;
+  text-shadow: 0 0 5px #ff0033;
+}
+
+/* Vignette Effect */
+body.possessed::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+  z-index: 9999;
+}
