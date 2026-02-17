@@ -1,0 +1,34 @@
+{
+  "name": "the-financial-exorcist",
+  "version": "1.0.0",
+  "description": "A gamified personal-finance web application with demonic possession mechanics and FinTech-grade security",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest --coverage"
+  },
+  "keywords": [
+    "finance",
+    "gamified",
+    "fintech",
+    "audit",
+    "security"
+  ],
+  "author": "Sviatoslav Kinash",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.0.0",
+    "uuid": "^8.3.2",
+    "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "jest": "^30.0.0",
+    "supertest": "^7.0.0",
+    "nodemon": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
