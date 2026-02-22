@@ -1,7 +1,7 @@
 ---
 name: Bug Planner
 description: "Creates a precise step-by-step implementation plan from verified research. Run after Research Verifier."
-tools: [search/codebase]
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, search/codebase]
 model: Claude Haiku 4.5 (copilot)
 target: vscode
 handoffs:

@@ -1,7 +1,7 @@
 ---
 name: Research Verifier
 description: "Fact-checks codebase research and assigns a quality score using the research-quality-measurement skill. Run after Bug Researcher."
-tools: [search/codebase]
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, search/codebase]
 model: Claude Haiku 4.5 (copilot)
 target: vscode
 handoffs:

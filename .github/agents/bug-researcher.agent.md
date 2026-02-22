@@ -2,7 +2,7 @@
 name: Bug Researcher
 description: "Analyzes a bug report and traces the code to identify the root cause. Start here — provide a bug folder (e.g. bugs/API-404) or let the agent auto-detect."
 argument-hint: "bug folder path, e.g. bugs/API-404 (optional — auto-detected if omitted)"
-tools: [search/codebase, web/fetch]
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, search/codebase, web/fetch]
 model: Claude Haiku 4.5 (copilot)
 target: vscode
 handoffs:

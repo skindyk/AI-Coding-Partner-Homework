@@ -1,7 +1,7 @@
 ---
 name: Security Verifier
 description: "Reviews changed code for security vulnerabilities. Read-only — no code modifications. Run in parallel with Unit Test Generator after Bug Implementer."
-tools: [search/codebase, web/fetch]
+tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, search/codebase, web/fetch]
 model: Claude Haiku 4.5 (copilot)
 target: vscode
 ---

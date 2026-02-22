@@ -1,7 +1,7 @@
 ---
 name: Bug Implementer
 description: "Applies the implementation plan to source code and runs tests. The ONLY agent that modifies files. Run after Bug Planner."
-tools: [execute/getTerminalOutput, execute/runInTerminal, read/terminalSelection, read/terminalLastCommand, edit/editFiles, search/codebase]
+tools: [read/readFile, execute/getTerminalOutput, execute/runInTerminal, read/terminalSelection, read/terminalLastCommand, edit/createDirectory, edit/createFile, edit/editFiles, search/codebase]
 model: Claude Haiku 4.5 (copilot)
 target: vscode
 handoffs:

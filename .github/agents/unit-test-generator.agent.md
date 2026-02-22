@@ -1,7 +1,7 @@
 ---
 name: Unit Test Generator
 description: "Generates and runs FIRST-compliant unit tests for changed code only. Run in parallel with Security Verifier after Bug Implementer."
-tools: [execute/getTerminalOutput, execute/runInTerminal, read/terminalSelection, read/terminalLastCommand, edit/editFiles, search/codebase]
+tools: [read/readFile, execute/getTerminalOutput, execute/runInTerminal, read/terminalSelection, read/terminalLastCommand, edit/createDirectory, edit/createFile, edit/editFiles, search/codebase]
 model: Claude Haiku 4.5 (copilot)
 target: vscode
 ---
