@@ -18,8 +18,7 @@ const users = [
 async function getUserById(req, res) {
   const userId = parseInt(req.params.id, 10);
 
-  // BUG: req.params.id returns a string, but users array uses numeric IDs
-  // Strict equality (===) comparison will always fail: "123" !== 123
+  // Convert string URL parameter to number for matching numeric user IDs
   const user = users.find(u => u.id === userId);
 
   if (!user) {
