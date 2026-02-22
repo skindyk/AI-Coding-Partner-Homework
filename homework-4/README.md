@@ -132,16 +132,17 @@ homework-4/
 │   ├── research-quality-measurement.md
 │   └── unit-tests-FIRST.md
 │
-├── copilot-agents/                ← GitHub Copilot agents (submission copy)
-│   ├── bug-researcher.agent.md
-│   ├── research-verifier.agent.md
-│   ├── bug-planner.agent.md
-│   ├── bug-implementer.agent.md
-│   ├── security-verifier.agent.md
-│   └── unit-test-generator.agent.md
-├── copilot-skills/                ← GitHub Copilot skills (submission copy)
-│   ├── research-quality-measurement/SKILL.md
-│   └── unit-tests-FIRST/SKILL.md
+├── .github/
+│   ├── agents/                    ← GitHub Copilot agents (Copilot picks these up automatically)
+│   │   ├── bug-researcher.agent.md
+│   │   ├── research-verifier.agent.md
+│   │   ├── bug-planner.agent.md
+│   │   ├── bug-implementer.agent.md
+│   │   ├── security-verifier.agent.md
+│   │   └── unit-test-generator.agent.md
+│   └── skills/                    ← GitHub Copilot skills
+│       ├── research-quality-measurement/SKILL.md
+│       └── unit-tests-FIRST/SKILL.md
 │
 ├── demo-bug-fix/
 │   ├── server.js
