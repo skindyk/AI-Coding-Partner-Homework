@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npm install:*)",
+      "Bash(npm test:*)",
+      "Bash(echo:*)",
+      "Bash(chmod:*)",
+      "WebFetch(domain:code.visualstudio.com)"
+    ]
+  }
+}
