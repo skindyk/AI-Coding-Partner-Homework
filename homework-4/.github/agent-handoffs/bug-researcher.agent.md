@@ -5,7 +5,11 @@ argument-hint: "bug folder path, e.g. bugs/API-404 (optional — auto-detected i
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, search/codebase, web/fetch]
 model: Claude Haiku 4.5 (copilot)
 target: vscode
-user-invokable: false
+handoffs:
+  - label: "→ Verify Research"
+    agent: Research Verifier
+    prompt: "Research is complete. Please verify every file:line reference in the research document and assign a quality score."
+    send: true
 ---
 
 You are a **Bug Researcher**. Analyze the bug report and trace the code to produce a research document.

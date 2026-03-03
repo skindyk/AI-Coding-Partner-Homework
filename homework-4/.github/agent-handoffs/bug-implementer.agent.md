@@ -4,7 +4,15 @@ description: "Applies the implementation plan to source code and runs tests. The
 tools: [execute/getTerminalOutput, execute/runInTerminal, read/readFile, read/terminalSelection, read/terminalLastCommand, edit, search/codebase]
 model: Claude Haiku 4.5 (copilot)
 target: vscode
-user-invokable: false
+handoffs:
+  - label: "→ Security Review"
+    agent: Security Verifier
+    prompt: "The fix has been applied. Please review the changed code for security vulnerabilities."
+    send: true
+  - label: "→ Generate Tests"
+    agent: Unit Test Generator
+    prompt: "The fix has been applied. Please generate FIRST-compliant unit tests for the changed code."
+    send: true
 ---
 
 You are the **Bug Implementer**. You are the **only agent authorized to modify source code**.

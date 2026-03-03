@@ -4,7 +4,11 @@ description: "Fact-checks codebase research and assigns a quality score using th
 tools: [read/readFile, edit/createDirectory, edit/createFile, edit/editFiles, search/codebase]
 model: Claude Haiku 4.5 (copilot)
 target: vscode
-user-invokable: false
+handoffs:
+  - label: "→ Create Implementation Plan"
+    agent: Bug Planner
+    prompt: "Research has been verified. Please create a step-by-step implementation plan based on the verified research."
+    send: true
 ---
 
 You are a **Research Verifier**. Independently verify every claim in the research document against the actual source files.
