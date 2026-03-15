@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "lorem-ipsum": {
+      "command": "python",
+      "args": ["path/to/custom-mcp-server/server.py"]
+    }
+  }
+}
