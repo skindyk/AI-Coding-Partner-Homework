@@ -1,0 +1,38 @@
+meta {
+  name: 11 - Bulk Import (XML)
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{api_url}}/tickets/import
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "file_type": "xml",
+    "file_content": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><tickets><ticket><customer_id>cust_007</customer_id><customer_email>eve@example.com</customer_email><customer_name>Eve Davis</customer_name><subject>Mobile app crashes</subject><description>The mobile app crashes on startup</description><category>bug_report</category><priority>urgent</priority><status>new</status></ticket></tickets>"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 207) {
+    const data = res.getBody();
+    if (data.success && data.summary) {
+      console.log('✓ Bulk Import (XML): PASSED');
+      console.log('  Total Records:', data.summary.total);
+      console.log('  Successful Imports:', data.summary.successful);
+      console.log('  Failed Imports:', data.summary.failed);
+    } else {
+      console.log('✗ Bulk Import (XML): FAILED');
+    }
+  } else {
+    console.log('✗ Bulk Import (XML): FAILED - Status:', res.getStatus());
+  }
+}

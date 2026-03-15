@@ -1,0 +1,19 @@
+meta {
+  name: 1 - Health Check
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/
+  body: none
+  auth: none
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+    console.log('✓ API Health Check: PASSED');
+  } else {
+    console.log('✗ API Health Check: FAILED');
+  }
+}

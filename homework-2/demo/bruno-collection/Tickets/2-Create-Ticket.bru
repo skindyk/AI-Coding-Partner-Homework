@@ -1,0 +1,50 @@
+meta {
+  name: 2 - Create Ticket
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{api_url}}/tickets
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "customer_id": "cust_001",
+    "customer_email": "john.doe@example.com",
+    "customer_name": "John Doe",
+    "subject": "Cannot access my account",
+    "description": "I have been unable to access my account for the past 2 days. The login page shows an error message.",
+    "category": "account_access",
+    "priority": "high",
+    "status": "new",
+    "tags": ["login", "urgent"],
+    "metadata": {
+      "source": "web_form",
+      "browser": "Chrome",
+      "device_type": "desktop"
+    }
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 201) {
+    const data = res.getBody();
+    if (data.success && data.ticket) {
+      bru.setEnvVar('ticket_id', data.ticket.id);
+      console.log('✓ Create Ticket: PASSED');
+      console.log('  Ticket ID:', data.ticket.id);
+      console.log('  Status:', data.ticket.status);
+    } else {
+      console.log('✗ Create Ticket: FAILED - Invalid response structure');
+    }
+  } else {
+    console.log('✗ Create Ticket: FAILED - Status:', res.getStatus());
+  }
+}

@@ -1,0 +1,31 @@
+meta {
+  name: 7 - Auto-Classify Ticket
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{api_url}}/tickets/{{ticket_id}}/auto-classify
+  body: none
+  auth: none
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+    const data = res.getBody();
+    if (data.success && data.classification) {
+      console.log('✓ Auto-Classify Ticket: PASSED');
+      console.log('  Category:', data.classification.category);
+      console.log('  Priority:', data.classification.priority);
+      console.log('  Confidence:', data.classification.confidence);
+      console.log('  Reasoning:', data.classification.reasoning);
+      console.log('  Keywords Found:', data.classification.keywords_found);
+    } else {
+      console.log('✗ Auto-Classify Ticket: FAILED - Invalid response structure');
+    }
+  } else if (res.getStatus() === 404) {
+    console.log('✗ Auto-Classify Ticket: FAILED - Ticket not found');
+  } else {
+    console.log('✗ Auto-Classify Ticket: FAILED - Status:', res.getStatus());
+  }
+}

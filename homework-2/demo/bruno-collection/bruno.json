@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Intelligent Customer Support System - API Tests",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

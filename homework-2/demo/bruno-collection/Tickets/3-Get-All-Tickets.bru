@@ -1,0 +1,28 @@
+meta {
+  name: 3 - Get All Tickets
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{api_url}}/tickets
+  body: none
+  auth: none
+}
+
+params:query {
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+    const data = res.getBody();
+    if (data.success && Array.isArray(data.tickets)) {
+      console.log('✓ Get All Tickets: PASSED');
+      console.log('  Total tickets:', data.count);
+    } else {
+      console.log('✗ Get All Tickets: FAILED - Invalid response structure');
+    }
+  } else {
+    console.log('✗ Get All Tickets: FAILED - Status:', res.getStatus());
+  }
+}

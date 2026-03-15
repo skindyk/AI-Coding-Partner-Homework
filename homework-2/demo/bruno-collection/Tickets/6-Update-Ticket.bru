@@ -1,0 +1,43 @@
+meta {
+  name: 6 - Update Ticket
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{api_url}}/tickets/{{ticket_id}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "status": "in_progress",
+    "assigned_to": "support_team",
+    "priority": "urgent",
+    "tags": ["login", "urgent", "in-investigation"]
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+    const data = res.getBody();
+    if (data.success && data.ticket) {
+      console.log('✓ Update Ticket: PASSED');
+      console.log('  Ticket ID:', data.ticket.id);
+      console.log('  Status:', data.ticket.status);
+      console.log('  Assigned To:', data.ticket.assigned_to);
+      console.log('  Updated At:', data.ticket.updated_at);
+    } else {
+      console.log('✗ Update Ticket: FAILED - Invalid response structure');
+    }
+  } else if (res.getStatus() === 404) {
+    console.log('✗ Update Ticket: FAILED - Ticket not found');
+  } else {
+    console.log('✗ Update Ticket: FAILED - Status:', res.getStatus());
+  }
+}

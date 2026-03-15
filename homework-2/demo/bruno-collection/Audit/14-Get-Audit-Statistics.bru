@@ -1,0 +1,30 @@
+meta {
+  name: 14 - Get Audit Statistics
+  type: http
+  seq: 14
+}
+
+get {
+  url: {{api_url}}/audit-stats
+  body: none
+  auth: none
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+    const data = res.getBody();
+    if (data.success && data.statistics) {
+      console.log('✓ Get Audit Statistics: PASSED');
+      const stats = data.statistics;
+      console.log('  Total Actions:', stats.total_actions);
+      console.log('  Actions by type:');
+      Object.keys(stats.actions_by_type || {}).forEach(action => {
+        console.log(`    - ${action}: ${stats.actions_by_type[action]}`);
+      });
+    } else {
+      console.log('✗ Get Audit Statistics: FAILED');
+    }
+  } else {
+    console.log('✗ Get Audit Statistics: FAILED - Status:', res.getStatus());
+  }
+}

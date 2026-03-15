@@ -1,0 +1,25 @@
+meta {
+  name: 18 - Error (Ticket Not Found)
+  type: http
+  seq: 18
+}
+
+get {
+  url: {{api_url}}/tickets/nonexistent-id-12345
+  body: none
+  auth: none
+}
+
+script:post-response {
+  if (res.getStatus() === 404) {
+    const data = res.getBody();
+    if (!data.success && data.error) {
+      console.log('✓ Not Found Error: PASSED');
+      console.log('  Error:', data.error);
+    } else {
+      console.log('✗ Not Found Error Test: FAILED - Expected error response');
+    }
+  } else {
+    console.log('✗ Not Found Error Test: FAILED - Expected 404 status');
+  }
+}

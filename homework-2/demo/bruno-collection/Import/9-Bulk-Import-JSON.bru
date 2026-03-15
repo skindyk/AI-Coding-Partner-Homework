@@ -1,0 +1,41 @@
+meta {
+  name: 9 - Bulk Import (JSON)
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{api_url}}/tickets/import
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "file_type": "json",
+    "file_content": "[{\"customer_id\":\"cust_003\",\"customer_email\":\"alice@example.com\",\"customer_name\":\"Alice Johnson\",\"subject\":\"Billing inquiry\",\"description\":\"I have questions about my invoice\",\"category\":\"billing_question\",\"priority\":\"medium\",\"status\":\"new\"},{\"customer_id\":\"cust_004\",\"customer_email\":\"bob@example.com\",\"customer_name\":\"Bob Wilson\",\"subject\":\"Feature request\",\"description\":\"Would like to export tickets to CSV\",\"category\":\"feature_request\",\"priority\":\"low\",\"status\":\"new\"}]"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 207) {
+    const data = res.getBody();
+    if (data.success && data.summary) {
+      console.log('✓ Bulk Import (JSON): PASSED');
+      console.log('  Total Records:', data.summary.total);
+      console.log('  Successful Imports:', data.summary.successful);
+      console.log('  Failed Imports:', data.summary.failed);
+      if (data.imported_tickets.length > 0) {
+        console.log('  First Imported Ticket ID:', data.imported_tickets[0].id);
+      }
+    } else {
+      console.log('✗ Bulk Import (JSON): FAILED');
+    }
+  } else {
+    console.log('✗ Bulk Import (JSON): FAILED - Status:', res.getStatus());
+  }
+}

@@ -1,0 +1,38 @@
+meta {
+  name: 10 - Bulk Import (CSV)
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{api_url}}/tickets/import
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "file_type": "csv",
+    "file_content": "customer_id,customer_email,customer_name,subject,description,category,priority,status\ncust_005,charlie@example.com,Charlie Brown,Cannot download invoice,I am unable to download my previous invoices,billing_question,high,new\ncust_006,diana@example.com,Diana Prince,Bug in search function,The search function returns incorrect results,bug_report,medium,new"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 207) {
+    const data = res.getBody();
+    if (data.success && data.summary) {
+      console.log('✓ Bulk Import (CSV): PASSED');
+      console.log('  Total Records:', data.summary.total);
+      console.log('  Successful Imports:', data.summary.successful);
+      console.log('  Failed Imports:', data.summary.failed);
+    } else {
+      console.log('✗ Bulk Import (CSV): FAILED');
+    }
+  } else {
+    console.log('✗ Bulk Import (CSV): FAILED - Status:', res.getStatus());
+  }
+}

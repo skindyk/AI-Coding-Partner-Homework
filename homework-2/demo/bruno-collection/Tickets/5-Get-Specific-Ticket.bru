@@ -1,0 +1,31 @@
+meta {
+  name: 5 - Get Specific Ticket
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{api_url}}/tickets/{{ticket_id}}
+  body: none
+  auth: none
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+    const data = res.getBody();
+    if (data.success && data.ticket) {
+      console.log('✓ Get Specific Ticket: PASSED');
+      console.log('  Ticket ID:', data.ticket.id);
+      console.log('  Subject:', data.ticket.subject);
+      console.log('  Status:', data.ticket.status);
+      console.log('  Category:', data.ticket.category);
+      console.log('  Priority:', data.ticket.priority);
+    } else {
+      console.log('✗ Get Specific Ticket: FAILED - Invalid response structure');
+    }
+  } else if (res.getStatus() === 404) {
+    console.log('✗ Get Specific Ticket: FAILED - Ticket not found');
+  } else {
+    console.log('✗ Get Specific Ticket: FAILED - Status:', res.getStatus());
+  }
+}

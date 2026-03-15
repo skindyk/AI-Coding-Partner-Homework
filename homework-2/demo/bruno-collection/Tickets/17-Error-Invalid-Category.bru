@@ -1,0 +1,42 @@
+meta {
+  name: 17 - Error Validation (Invalid Category)
+  type: http
+  seq: 17
+}
+
+post {
+  url: {{api_url}}/tickets
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "customer_id": "cust_test",
+    "customer_email": "test@example.com",
+    "customer_name": "Test User",
+    "subject": "Test ticket",
+    "description": "This should fail - invalid category",
+    "category": "invalid_category",
+    "priority": "high"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 400) {
+    const data = res.getBody();
+    if (!data.success && data.error) {
+      console.log('✓ Validation Error (Invalid Category): PASSED');
+      console.log('  Error:', data.error);
+      console.log('  Details:', data.details);
+    } else {
+      console.log('✗ Validation Error Test: FAILED - Expected validation error');
+    }
+  } else {
+    console.log('✗ Validation Error Test: FAILED - Expected 400 status');
+  }
+}

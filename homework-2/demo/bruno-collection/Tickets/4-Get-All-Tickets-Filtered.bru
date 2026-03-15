@@ -1,0 +1,34 @@
+meta {
+  name: 4 - Get All Tickets (Filtered)
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{api_url}}/tickets
+  body: none
+  auth: none
+}
+
+params:query {
+  category: account_access
+  priority: high
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+    const data = res.getBody();
+    if (data.success && Array.isArray(data.tickets)) {
+      console.log('✓ Get Filtered Tickets: PASSED');
+      console.log('  Filtered tickets:', data.count);
+      if (data.tickets.length > 0) {
+        console.log('  Sample - Category:', data.tickets[0].category);
+        console.log('  Sample - Priority:', data.tickets[0].priority);
+      }
+    } else {
+      console.log('✗ Get Filtered Tickets: FAILED - Invalid response structure');
+    }
+  } else {
+    console.log('✗ Get Filtered Tickets: FAILED - Status:', res.getStatus());
+  }
+}

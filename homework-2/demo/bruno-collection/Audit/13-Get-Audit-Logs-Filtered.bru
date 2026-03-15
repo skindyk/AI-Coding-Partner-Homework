@@ -1,0 +1,34 @@
+meta {
+  name: 13 - Get Audit Logs (Filtered by Ticket)
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{api_url}}/audit-logs
+  body: none
+  auth: none
+}
+
+params:query {
+  ticket_id: {{ticket_id}}
+}
+
+script:post-response {
+  if (res.getStatus() === 200) {
+    const data = res.getBody();
+    if (data.success && Array.isArray(data.logs)) {
+      console.log('✓ Get Audit Logs (Filtered): PASSED');
+      console.log('  Log entries for ticket:', data.count);
+      if (data.logs.length > 0) {
+        data.logs.forEach((log, index) => {
+          console.log(`  Log ${index + 1} - Action: ${log.action}`);
+        });
+      }
+    } else {
+      console.log('✗ Get Audit Logs (Filtered): FAILED');
+    }
+  } else {
+    console.log('✗ Get Audit Logs (Filtered): FAILED - Status:', res.getStatus());
+  }
+}

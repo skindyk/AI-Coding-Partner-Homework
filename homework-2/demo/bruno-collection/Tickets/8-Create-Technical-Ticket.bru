@@ -1,0 +1,48 @@
+meta {
+  name: 8 - Create Technical Ticket
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{api_url}}/tickets
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "customer_id": "cust_002",
+    "customer_email": "jane.smith@example.com",
+    "customer_name": "Jane Smith",
+    "subject": "API returning 500 error",
+    "description": "The payment API endpoint is returning HTTP 500 errors intermittently. This is affecting our production environment.",
+    "category": "technical_issue",
+    "priority": "urgent",
+    "status": "new",
+    "tags": ["api", "critical", "production"],
+    "metadata": {
+      "source": "api",
+      "browser": "N/A",
+      "device_type": "N/A"
+    }
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 201) {
+    const data = res.getBody();
+    if (data.success && data.ticket) {
+      bru.setEnvVar('ticket_id_2', data.ticket.id);
+      console.log('✓ Create Technical Ticket: PASSED');
+      console.log('  Ticket ID:', data.ticket.id);
+      console.log('  Category:', data.ticket.category);
+    } else {
+      console.log('✗ Create Technical Ticket: FAILED');
+    }
+  }
+}

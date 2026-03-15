@@ -1,0 +1,39 @@
+meta {
+  name: 16 - Error Validation (Missing Email)
+  type: http
+  seq: 16
+}
+
+post {
+  url: {{api_url}}/tickets
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "customer_id": "cust_test",
+    "customer_name": "Test User",
+    "subject": "Test ticket",
+    "description": "This should fail - missing email"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 400) {
+    const data = res.getBody();
+    if (!data.success && data.error) {
+      console.log('✓ Validation Error (Missing Email): PASSED');
+      console.log('  Error:', data.error);
+      console.log('  Details:', data.details);
+    } else {
+      console.log('✗ Validation Error Test: FAILED - Expected validation error');
+    }
+  } else {
+    console.log('✗ Validation Error Test: FAILED - Expected 400 status');
+  }
+}
