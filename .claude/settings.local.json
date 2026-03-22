@@ -8,7 +8,25 @@
       "Bash(chmod:*)",
       "WebFetch(domain:code.visualstudio.com)",
       "mcp__context7__resolve-library-id",
-      "mcp__context7__query-docs"
+      "mcp__context7__query-docs",
+      "Bash(find /c/Users/skind/.vscode/AI-Coding-Partner-Homework -name .gitignore -o -name shared* -o -name utilities -type d)",
+      "Bash(python -m py_compile agents/transaction_validator.py agents/fraud_detector.py agents/compliance_checker.py integrator.py)",
+      "Bash(python agents/transaction_validator.py --dry-run)",
+      "Bash(python integrator.py)",
+      "Bash(python -m pytest tests/ --cov=agents --cov=integrator --cov-report=term-missing -v)",
+      "Bash(pip install:*)",
+      "Bash(python -m pytest tests/test_fraud_detector.py::test_high_risk_75k -v -s)",
+      "Bash(python -m pytest tests/ --cov=agents --cov=integrator --cov-report=term-missing)",
+      "Bash(python -m pytest tests/ --cov=agents --cov=integrator --cov-report=term-missing --tb=short)",
+      "mcp__pipeline-status__list_pipeline_results",
+      "mcp__pipeline-status__get_transaction_status",
+      "Bash(git -C homework-6 status)",
+      "Bash(find /c/Users/skind/.vscode/AI-Coding-Partner-Homework -name *.json -not -path */node_modules/*)",
+      "Bash(find /c/Users/skind/.vscode/AI-Coding-Partner-Homework -name *.md -path */commands/*)",
+      "Bash(find /c/Users/skind/.vscode/AI-Coding-Partner-Homework -name *.agent.md -o -name *.prompt.md)",
+      "Bash(rm \"C:/Users/skind/.vscode/AI-Coding-Partner-Homework/homework-6/src/agents/transactionValidator.js\")",
+      "Bash(rmdir \"C:/Users/skind/.vscode/AI-Coding-Partner-Homework/homework-6/src/agents\")",
+      "Bash(rmdir \"C:/Users/skind/.vscode/AI-Coding-Partner-Homework/homework-6/src\")"
     ]
   }
 }

@@ -1,0 +1,35 @@
+{
+  "message_id": "a72ef4f6-33e7-44f5-9db1-dcca22823d99",
+  "timestamp": "2026-03-22T13:59:46.137Z",
+  "source_agent": "compliance-checker",
+  "target_agent": "integrator",
+  "message_type": "transaction",
+  "agent_chain": [
+    "integrator",
+    "transaction-validator",
+    "fraud-detector",
+    "compliance-checker"
+  ],
+  "data": {
+    "transaction_id": "TXN001",
+    "timestamp": "2026-03-16T09:00:00Z",
+    "source_account": "ACC-1001",
+    "destination_account": "ACC-2001",
+    "amount": "1500.00",
+    "currency": "USD",
+    "transaction_type": "transfer",
+    "description": "Monthly rent payment",
+    "metadata": {
+      "channel": "online",
+      "country": "US"
+    },
+    "status": "approved",
+    "reason": null,
+    "fraud_risk_score": 0,
+    "fraud_risk_level": "LOW",
+    "ctr_required": false,
+    "compliance_notes": [
+      "Transaction approved for settlement"
+    ]
+  }
+}
