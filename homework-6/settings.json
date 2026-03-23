@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd homework-6 && python -m pytest tests/ --cov=agents --cov=integrator --cov-fail-under=80 --cov-report=term-missing -q"
+          }
+        ]
+      }
+    ]
+  }
+}

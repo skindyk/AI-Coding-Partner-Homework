@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/skind/.vscode/AI-Coding-Partner-Homework/**)",
+      "Bash(python homework-6/integrator.py)",
+      "Bash(for f:*)",
+      "Bash(do cat:*)",
+      "Bash(done)",
+      "Bash(python homework-6/agents/transaction_validator.py --dry-run)",
+      "Skill(update-config)",
+      "Bash(python .claude/hooks/coverage_gate.py)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(echo \"exit_code: $?\")",
+      "Bash(python -c \"import sys; print\\(sys.version\\)\")",
+      "Bash(python -m pytest --version)",
+      "Bash(python -m pytest tests/ --cov=agents --cov=integrator --cov-fail-under=80 -q --no-header)",
+      "Bash(echo \"EXITCODE: $?\")",
+      "Bash(python -c \":*)",
+      "Bash(python -m pytest tests/test_transaction_validator.py --cov=agents --cov-fail-under=80 -q --no-header)",
+      "Bash(python -m pytest tests/ --collect-only -q)"
+    ]
+  }
+}

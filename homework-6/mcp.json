@@ -1,12 +1,14 @@
 {
   "mcpServers": {
     "context7": {
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"]
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
     },
     "pipeline-status": {
-      "command": "node",
-      "args": ["mcp/server.js"]
+      "command": "python",
+      "args": [
+        "C:/Users/skind/.vscode/AI-Coding-Partner-Homework/homework-6/mcp/server.py"
+      ]
     }
   }
 }

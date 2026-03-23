@@ -1,292 +1,148 @@
-# Agents Manifest — Banking Pipeline
+# AI-Powered Multi-Agent Banking Pipeline — Project Context
 
-## Overview
+**Author: Serhii Kindyk**
 
-The banking pipeline consists of **3 core transaction-processing agents** that form the primary processing chain. Each agent is a pure-functional Node.js module that conforms to the standard message interface.
+## Project Overview
 
----
+This project implements a 3-agent Python banking transaction pipeline orchestrated by 4 Claude Code meta-agents. The pipeline validates transactions, scores them for fraud risk, and performs compliance checks using file-based JSON message passing through shared directories.
 
-## Core Transaction Agents
+## Pipeline Flow Diagram
 
-### 1. Transaction Validator
+```
+sample-transactions.json
+         |
+         v
+   [integrator.py]
+         |
+         v
+[transaction_validator] -----> shared/results/ (rejected: TXN006, TXN007)
+         |
+         v
+  [fraud_detector]
+         |
+         v
+[compliance_checker] -------> shared/results/ (all passing transactions)
+         |
+         v
+   Pipeline Complete
+```
 
-**File**: `src/agents/transaction-validator.js`  
-**Export Function**: `processMessage(message)`
+## Standard JSON Message Format
 
-**Role**: First-stage gatekeeper that validates transaction structure and basic compliance rules.
+All agents communicate via JSON files with this schema:
 
-**Input Contract**:
 ```json
 {
-  "message_id": "uuid",
-  "timestamp": "ISO 8601",
-  "source_agent": "integrator",
-  "target_agent": "transaction-validator",
+  "message_id": "uuid4-string",
+  "timestamp": "2026-03-16T10:00:00Z",
+  "source_agent": "transaction_validator",
+  "target_agent": "fraud_detector",
   "message_type": "transaction",
-  "agent_chain": ["integrator"],
   "data": {
     "transaction_id": "TXN001",
     "amount": "1500.00",
     "currency": "USD",
     "source_account": "ACC-1001",
     "destination_account": "ACC-2001",
-    "transaction_type": "transfer",
-    "timestamp": "2026-03-16T09:00:00Z",
-    "metadata": {"channel": "online", "country": "US"}
-  }
-}
-```
-
-**Processing Steps**:
-1. Verify required fields: `transaction_id`, `amount`, `currency`, `source_account`, `destination_account`, `transaction_type`
-2. Parse `amount` using `decimal.js` → `new Decimal(amount)`
-3. Validate amount > 0 (reject if ≤ 0 with reason `INVALID_AMOUNT`)
-4. Validate `currency` against ISO 4217 whitelist: `['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD', 'CHF']` (reject if not in list with reason `INVALID_CURRENCY`)
-5. If all pass: set `data.status = "validated"`, else: set `status = "rejected"` and add `reason` field
-
-**Output Contract**:
-```json
-{
-  "message_id": "uuid",
-  "timestamp": "ISO 8601",
-  "source_agent": "transaction-validator",
-  "target_agent": "fraud-detector",
-  "message_type": "transaction",
-  "agent_chain": ["integrator", "transaction-validator"],
-  "data": {
-    "transaction_id": "TXN001",
-    "amount": "1500.00",
-    "currency": "USD",
-    "source_account": "ACC-1001",
-    "destination_account": "ACC-2001",
-    "transaction_type": "transfer",
-    "timestamp": "2026-03-16T09:00:00Z",
-    "status": "validated",
-    "reason": null,
-    "metadata": {"channel": "online", "country": "US"}
-  }
-}
-```
-
-**Example Rejection** (TXN006 - invalid currency XYZ):
-```json
-{
-  "data": {
-    "transaction_id": "TXN006",
-    "status": "rejected",
-    "reason": "INVALID_CURRENCY",
-    "currency": "XYZ"
-  },
-  "agent_chain": ["integrator", "transaction-validator"]
-}
-```
-
----
-
-### 2. Fraud Detector
-
-**File**: `src/agents/fraud-detector.js`  
-**Export Function**: `processMessage(message)`
-
-**Role**: Scores transactions for fraud risk and flags compliance requirements based on heuristic analysis.
-
-**Input Contract**: Message with `status === "validated"` from Transaction Validator
-
-**Processing Steps**:
-1. Extract `amount` (as Decimal), `currency`, `transaction_type`, `timestamp`, and `metadata.country`
-2. Initialize `fraud_risk_score = 0`
-3. Apply scoring rules:
-   - `amount > 10000`: +3 points
-   - `amount > 50000`: +4 points (additional to above)
-   - `timestamp` hour in [02–05] UTC: +2 points
-   - `metadata.country !== "US"`: +1 point
-   - `destination_account === "ACC-9999"`: +5 points (watchlist hit)
-4. Calculate `fraud_risk_level`:
-   - 0–2 points: `"LOW"`
-   - 3–6 points: `"MEDIUM"`
-   - 7–10 points: `"HIGH"`
-5. Set `ctr_required = true` if `transaction_type === "wire_transfer"` AND `amount > 10000`
-6. Add fields to `data`: `fraud_risk_score`, `fraud_risk_level`, `ctr_required`
-7. Append `"fraud-detector"` to `agent_chain`
-
-**Output Contract**:
-```json
-{
-  "message_id": "uuid",
-  "timestamp": "ISO 8601",
-  "source_agent": "fraud-detector",
-  "target_agent": "compliance-checker",
-  "message_type": "transaction",
-  "agent_chain": ["integrator", "transaction-validator", "fraud-detector"],
-  "data": {
-    "transaction_id": "TXN001",
-    "amount": "1500.00",
-    "currency": "USD",
-    "source_account": "ACC-1001",
-    "destination_account": "ACC-2001",
-    "transaction_type": "transfer",
     "status": "validated",
     "fraud_risk_score": 0,
     "fraud_risk_level": "LOW",
     "ctr_required": false,
-    "metadata": {"channel": "online", "country": "US"}
+    "aml_flag": false,
+    "compliance_status": "CLEAR"
   }
 }
 ```
 
-**Example: TXN005** ($75,000 wire_transfer, expects HIGH risk + CTR_REQUIRED):
-```json
-{
-  "data": {
-    "transaction_id": "TXN005",
-    "amount": "75000.00",
-    "fraud_risk_score": 7,
-    "fraud_risk_level": "HIGH",
-    "ctr_required": true,
-    "transaction_type": "wire_transfer"
-  }
-}
-```
+## Shared Directory Protocol
 
-**Example: TXN004** (02:47 UTC, country DE, expects unusual hour + cross-border):
-- Hour check (02:47): +2 points
-- Cross-border (DE ≠ US): +1 point
-- Result: `fraud_risk_score: 3`, `fraud_risk_level: "MEDIUM"`
-
-**Example: TXN003** (destination ACC-9999, expects watchlist hit):
-```json
-{
-  "data": {
-    "transaction_id": "TXN003",
-    "destination_account": "ACC-9999",
-    "fraud_risk_score": 5,
-    "fraud_risk_level": "MEDIUM"
-  }
-}
-```
-
----
-
-### 3. Compliance Checker
-
-**File**: `src/agents/compliance-checker.js`  
-**Export Function**: `processMessage(message)`
-
-**Role**: Final validation stage that reviews fraud assessment and enforces compliance rules. Either approves for settlement or rejects with compliance violation reason.
-
-**Input Contract**: Message from Fraud Detector with `fraud_risk_level` and `ctr_required` fields
-
-**Processing Steps**:
-1. Check `fraud_risk_level`:
-   - If `"HIGH"` and `ctr_required === true`: Check if CTR (Customer Transaction Report) flag is acknowledged in message metadata (simulated check)
-   - If `"HIGH"` and CTR is not satisfied: Set `reason = "COMPLIANCE_VIOLATION"`, `status = "rejected"`
-2. If all compliance checks pass:
-   - Set `status = "approved"` (final approval for settlement)
-3. Populate `compliance_notes` array with:
-   - `"CTR required for wire transfers above $10,000"` (if flagged)
-   - `"High fraud risk detected; review recommended"` (if level is HIGH)
-   - `"Transaction approved for settlement"` (if status = approved)
-4. Append `"compliance-checker"` to `agent_chain`
-
-**Output Contract**:
-```json
-{
-  "message_id": "uuid",
-  "timestamp": "ISO 8601",
-  "source_agent": "compliance-checker",
-  "target_agent": "integrator",
-  "message_type": "transaction",
-  "agent_chain": ["integrator", "transaction-validator", "fraud-detector", "compliance-checker"],
-  "data": {
-    "transaction_id": "TXN001",
-    "amount": "1500.00",
-    "currency": "USD",
-    "status": "approved",
-    "fraud_risk_score": 0,
-    "fraud_risk_level": "LOW",
-    "ctr_required": false,
-    "compliance_notes": ["Transaction approved for settlement"]
-  }
-}
-```
-
-**Example: TXN005 Approval** (HIGH fraud but CTR satisfied):
-```json
-{
-  "data": {
-    "transaction_id": "TXN005",
-    "status": "approved",
-    "fraud_risk_level": "HIGH",
-    "ctr_required": true,
-    "compliance_notes": [
-      "CTR required for wire transfers above $10,000",
-      "High fraud risk detected; review recommended",
-      "Transaction approved for settlement"
-    ]
-  }
-}
-```
-
-**Example: Invalid Currency Rejection** (TXN006):
-```json
-{
-  "data": {
-    "transaction_id": "TXN006",
-    "status": "rejected",
-    "reason": "INVALID_CURRENCY"
-  }
-}
-```
-
----
-
-## Message Exchange Flow
-
-### Happy Path (Valid Transaction)
-
-```
-Integrator → Transaction Validator
-  Input:  raw transaction (amount, currency, accounts)
-  Output: {status: "validated", ...}
-            ↓
-         Fraud Detector
-  Input:  validated transaction
-  Output: {fraud_risk_score, fraud_risk_level, ctr_required, ...}
-            ↓
-         Compliance Checker
-  Input:  fraud-assessed transaction
-  Output: {status: "approved" | "rejected", compliance_notes[], ...}
-            ↓
-         Integrator (writes to shared/results/TXN[ID].json)
-```
-
-### Early Rejection Path (Invalid Currency or Amount)
-
-```
-Integrator → Transaction Validator
-  Input:  raw transaction (currency: "XYZ" or amount: "-100.00")
-  Output: {status: "rejected", reason: "INVALID_CURRENCY" | "INVALID_AMOUNT"}
-            ↓
-         Integrator (writes rejection to shared/results/TXN[ID].json, skips downstream agents)
-```
-
-### Edge Cases Tested
-
-| Transaction | Input Condition | Expected Behavior | Agent Affected |
+| Directory | Purpose | Written by | Read by |
 |---|---|---|---|
-| TXN006 | currency = "XYZ" | Rejected with reason `INVALID_CURRENCY` | Transaction Validator |
-| TXN007 | amount = "-100.00" | Rejected with reason `INVALID_AMOUNT` | Transaction Validator |
-| TXN005 | amount = "$75,000", wire_transfer | fraud_risk_level = `HIGH`, ctr_required = `true` | Fraud Detector |
-| TXN004 | timestamp = "02:47 UTC", country = "DE" | +2 pts (unusual hour), +1 pt (cross-border), score ≥ 3 | Fraud Detector |
-| TXN003 | destination_account = "ACC-9999" | +5 pts (watchlist hit), fraud_risk_level ≥ `MEDIUM` | Fraud Detector |
+| `shared/input/` | Initial transaction drops | integrator.py | transaction_validator |
+| `shared/processing/` | In-flight messages | any agent | any agent |
+| `shared/output/` | Intermediate results | validator / fraud_detector | fraud_detector / compliance_checker |
+| `shared/results/` | Final outcomes | compliance_checker / validator (rejects) | MCP server / /run-pipeline skill |
 
----
+## Technology Constraints
 
-## Agent Contract Summary
+- **Monetary values**: `decimal.Decimal` only — never `float`
+- **Currency codes**: ISO 4217 whitelist: `USD, EUR, GBP, JPY, CAD, AUD`
+- **PII masking**: Account numbers masked in all logs — `ACC-1001 → ***-1001`
+- **Timestamps**: ISO 8601 format with UTC timezone
+- **JSON serialization**: Custom `DecimalEncoder` — `Decimal` → `str`
 
-| Agent | Inputs | Outputs | Rejects | Libraries |
-|---|---|---|---|---|
-| **Transaction Validator** | transaction_id, amount, currency, accounts, metadata | status (validated/rejected), reason if rejected | INVALID_CURRENCY, INVALID_AMOUNT, MISSING_FIELD | `decimal.js`, `uuid` |
-| **Fraud Detector** | validated transaction + timestamp, country metadata | fraud_risk_score, fraud_risk_level, ctr_required | None (always processes) | `decimal.js`, `Date` |
-| **Compliance Checker** | fraud-assessed transaction | status (approved/rejected), compliance_notes, reason if rejected | COMPLIANCE_VIOLATION | none (pure logic) |
+## Test Requirements
 
+- Framework: `pytest` with `pytest-cov`
+- Coverage gate: ≥ 80% (blocks push)
+- Coverage target: ≥ 90%
+- File isolation: use `tmp_path` fixture — never write to real `shared/` in tests
+
+## Meta-Agent Table
+
+| Agent | File | Role | Run Order |
+|---|---|---|---|
+| Spec Writer | `.claude/agents/spec-writer.agent.md` | Generates specification.md and agents.md | 1st |
+| Code Generator | `.claude/agents/code-generator.agent.md` | Generates pipeline Python code | 2nd |
+| Skills and Hooks | `.claude/agents/skills-and-hooks.agent.md` | Installs pre-push hook, verifies skills | 3rd |
+| Test and Docs | `.claude/agents/test-and-docs.agent.md` | Writes tests, README.md, HOWTORUN.md | 4th |
+
+## Pipeline Agent Table
+
+| Agent | File | Input | Output |
+|---|---|---|---|
+| Transaction Validator | `agents/transaction_validator.py` | raw transaction from integrator | valid → shared/output/, rejected → shared/results/ |
+| Fraud Detector | `agents/fraud_detector.py` | shared/output/ | shared/output/ (with fraud scores added) |
+| Compliance Checker | `agents/compliance_checker.py` | shared/output/ | shared/results/ (final result) |
+
+## Validation Rules
+
+| Check | Condition | Rejection Reason |
+|---|---|---|
+| Required fields | Any of transaction_id, amount, currency, source_account, destination_account missing | `MISSING_FIELD` |
+| Positive amount | `Decimal(str(amount)) <= 0` | `NEGATIVE_AMOUNT` |
+| Currency whitelist | Currency not in USD, EUR, GBP, JPY, CAD, AUD | `INVALID_CURRENCY` |
+
+**Known rejection cases from sample-transactions.json:**
+- TXN006: currency "XYZ" → `INVALID_CURRENCY`
+- TXN007: amount -100.00 → `NEGATIVE_AMOUNT`
+
+## Fraud Scoring Rules
+
+| Condition | Points |
+|---|---|
+| amount > $50,000 | +4 |
+| $10,000 < amount <= $50,000 | +3 |
+| Transaction hour 02:00–05:00 UTC | +2 |
+| metadata.country != "US" | +1 |
+
+| Score Range | Risk Level |
+|---|---|
+| 0–2 | LOW |
+| 3–6 | MEDIUM |
+| 7–10 | HIGH |
+
+**Known HIGH-risk case:** TXN005 ($75,000) → score >= 7 → `HIGH`
+
+## Compliance Rules
+
+| Field | Condition | Value |
+|---|---|---|
+| `ctr_required` | amount > $10,000 | `true` |
+| `aml_flag` | fraud_risk_level == "HIGH" OR $9,000 <= amount <= $10,000 | `true` |
+| `compliance_status` | aml_flag OR ctr_required | `"REVIEW_REQUIRED"`, else `"CLEAR"` |
+
+**Known CTR cases:** TXN002 ($25,000) and TXN005 ($75,000) → `ctr_required: true`
+
+## Expected Pipeline Results Summary
+
+| TXN | Amount | Currency | Validator | Fraud Level | CTR | AML | Compliance |
+|---|---|---|---|---|---|---|---|
+| TXN001 | $1,500 | USD | validated | LOW | false | false | CLEAR |
+| TXN002 | $25,000 | USD | validated | MEDIUM | true | false | REVIEW_REQUIRED |
+| TXN003 | $9,999.99 | USD | validated | LOW | false | false | CLEAR |
+| TXN004 | $500 | EUR | validated | MEDIUM (odd hour+foreign) | false | false | CLEAR |
+| TXN005 | $75,000 | USD | validated | HIGH | true | true | REVIEW_REQUIRED |
+| TXN006 | $200 | XYZ | rejected: INVALID_CURRENCY | — | — | — | — |
+| TXN007 | -$100 | GBP | rejected: NEGATIVE_AMOUNT | — | — | — | — |
+| TXN008 | $3,200 | USD | validated | LOW | false | false | CLEAR |
