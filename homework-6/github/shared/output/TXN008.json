@@ -1,0 +1,35 @@
+{
+  "message_id": "46e3a940-9576-4d94-98a2-8646756c2fc6",
+  "timestamp": "2026-03-22T13:59:46.152Z",
+  "source_agent": "compliance-checker",
+  "target_agent": "integrator",
+  "message_type": "transaction",
+  "agent_chain": [
+    "integrator",
+    "transaction-validator",
+    "fraud-detector",
+    "compliance-checker"
+  ],
+  "data": {
+    "transaction_id": "TXN008",
+    "timestamp": "2026-03-16T10:15:00Z",
+    "source_account": "ACC-1008",
+    "destination_account": "ACC-9900",
+    "amount": "3200.00",
+    "currency": "USD",
+    "transaction_type": "transfer",
+    "description": "Salary advance",
+    "metadata": {
+      "channel": "mobile",
+      "country": "US"
+    },
+    "status": "approved",
+    "reason": null,
+    "fraud_risk_score": 0,
+    "fraud_risk_level": "LOW",
+    "ctr_required": false,
+    "compliance_notes": [
+      "Transaction approved for settlement"
+    ]
+  }
+}

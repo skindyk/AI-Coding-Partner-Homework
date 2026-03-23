@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "pipeline-status": {
+      "command": "python",
+      "args": [
+        "C:/Users/skind/.vscode/AI-Coding-Partner-Homework/homework-6/mcp/server.py"
+      ]
+    }
+  }
+}

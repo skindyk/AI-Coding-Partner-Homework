@@ -1,0 +1,35 @@
+{
+  "message_id": "d8050138-fdf6-4c9f-bd25-d4e48268b6c2",
+  "timestamp": "2026-03-22T13:59:46.142Z",
+  "source_agent": "compliance-checker",
+  "target_agent": "integrator",
+  "message_type": "transaction",
+  "agent_chain": [
+    "integrator",
+    "transaction-validator",
+    "fraud-detector",
+    "compliance-checker"
+  ],
+  "data": {
+    "transaction_id": "TXN003",
+    "timestamp": "2026-03-16T09:30:00Z",
+    "source_account": "ACC-1003",
+    "destination_account": "ACC-9999",
+    "amount": "9999.99",
+    "currency": "USD",
+    "transaction_type": "transfer",
+    "description": "Consulting payment",
+    "metadata": {
+      "channel": "online",
+      "country": "US"
+    },
+    "status": "approved",
+    "reason": null,
+    "fraud_risk_score": 5,
+    "fraud_risk_level": "MEDIUM",
+    "ctr_required": false,
+    "compliance_notes": [
+      "Transaction approved for settlement"
+    ]
+  }
+}
